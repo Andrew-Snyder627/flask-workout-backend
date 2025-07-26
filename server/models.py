@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import validates
 db = SQLAlchemy()
 
 # Models will go here
@@ -18,6 +19,20 @@ class Exercise(db.Model):
     back_populates='exercises',
     viewonly=True
   )
+
+  # Validations
+  @validates('name')
+  def validate_name(self, key, value):
+    if not value or not value.strip():
+      raise ValueError("Exercise name must not be empty")
+    return value
+
+  @validates('category')
+  def validate_category(self, key, value):
+    if value.lower() not in ['strength', 'cardio', 'mobility']:
+      raise ValueError("Category must be strength, cardio, or mobility")
+    return value
+
 
   def __repr__(self):
     return f"<Exercise {self.name}>"
@@ -39,6 +54,14 @@ class Workout(db.Model):
       viewonly=True
   )
 
+  # Validations
+  @validates('duration_minutes')
+  def validate_duration(self, key, value):
+    if value is None or value < 1:
+        raise ValueError("Duration must be at least 1 minute")
+    return value
+  
+
   def __repr__(self):
     return f"<Workout {self.id} on {self.date}>"
   
@@ -53,7 +76,7 @@ class WorkoutExercise(db.Model):
   duration_seconds = db.Column(db.Integer)
 
   # No need for relationships here, handled via relationships above
-  
+
   def __repr__(self):
     return f"<WorkoutExercise W:{self.workout_id} E:{self.exercise_id}>"
   
