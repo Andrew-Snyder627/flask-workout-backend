@@ -11,6 +11,13 @@ class Exercise(db.Model):
   equipment_needed = db.Column(db.Boolean, nullable=False)
 
   # Relationships will be here
+  workout_exercises = db.relationship('WorkoutExercise', backref='exercise', cascade="all, delete-orphan")
+  workouts = db.relationship(
+    'Workout',
+    secondary='workout_exercises',
+    back_populates='exercises',
+    viewonly=True
+  )
 
   def __repr__(self):
     return f"<Exercise {self.name}>"
@@ -24,6 +31,13 @@ class Workout(db.Model):
   notes = db.Column(db.Text)
 
   # Relationships will go here
+  workout_exercises = db.relationship('WorkoutExercise', backref='workout', cascade="all, delete-orphan")
+  exercises = db.relationship(
+    'Exercise',
+      secondary='workout_exercises',
+      back_populates='workouts',
+      viewonly=True
+  )
 
   def __repr__(self):
     return f"<Workout {self.id} on {self.date}>"
@@ -38,8 +52,8 @@ class WorkoutExercise(db.Model):
   sets = db.Column(db.Integer)
   duration_seconds = db.Column(db.Integer)
 
-  # Relationships will go here
-
+  # No need for relationships here, handled via relationships above
+  
   def __repr__(self):
     return f"<WorkoutExercise W:{self.workout_id} E:{self.exercise_id}>"
   
