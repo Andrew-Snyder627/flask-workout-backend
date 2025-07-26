@@ -28,3 +28,18 @@ class Workout(db.Model):
   def __repr__(self):
     return f"<Workout {self.id} on {self.date}>"
   
+class WorkoutExercise(db.Model):
+  __tablename__ = 'workout_exercises'
+
+  id = db.Column(db.Integer, primary_key=True)
+  workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'), nullable=False)
+  exercise_id = db.Column(db.Integer, db.ForeignKey('exercises.id'), nullable=False)
+  reps = db.Column(db.Integer)
+  sets = db.Column(db.Integer)
+  duration_seconds = db.Column(db.Integer)
+
+  # Relationships will go here
+
+  def __repr__(self):
+    return f"<WorkoutExercise W:{self.workout_id} E:{self.exercise_id}>"
+  
