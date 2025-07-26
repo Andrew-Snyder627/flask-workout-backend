@@ -14,3 +14,17 @@ class Exercise(db.Model):
 
   def __repr__(self):
     return f"<Exercise {self.name}>"
+  
+class Workout(db.Model):
+  __tablename__ = 'workouts'
+
+  id = db.Column(db.Integer, primary_key=True)
+  date = db.Column(db.Date, nullable=False)
+  duration_minutes = db.Column(db.Integer, nullable=False)
+  notes = db.Column(db.Text)
+
+  # Relationships will go here
+
+  def __repr__(self):
+    return f"<Workout {self.id} on {self.date}>"
+  
