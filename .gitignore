@@ -1,0 +1,21 @@
+# Python cache and compiled files
+__pycache__/
+*.pyc
+
+# SQLite database
+app.db
+
+# Pipenv environment (if present)
+.env
+env/
+venv/
+
+# Flask instance folder (for configs/secrets)
+instance/
+
+# VSCode or Mac system files (optional)
+.vscode/
+.DS_Store
+
+# System junk
+*.swp
