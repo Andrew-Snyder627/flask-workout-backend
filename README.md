@@ -20,26 +20,36 @@ This repository contains the backend API for a workout tracking application desi
 
 1. Clone the Repository
 
+```
    git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
    cd YOUR-REPO-NAME/server
+```
 
 2. Install Dependencies with Pipenv
 
+```
    pipenv install
+```
 
 3. Initialize the Database
 
+```
    pipenv shell
    export FLASK_APP=app.py
    flask db upgrade
+```
 
 4. Seed the Database with Sample Data
 
+```
    python seed.py
+```
 
 5. Run the Application
 
+```
    flask run
+```
 
 The server will run on http://localhost:5555
 
@@ -73,33 +83,38 @@ Create an Exercise
 POST /exercises
 Content-Type: application/json
 
+```
 {
 "name": "Deadlift",
 "category": "strength",
 "equipment_needed": true
 }
+```
 
 Create a Workout
-
 POST /workouts
 Content-Type: application/json
 
+```
 {
 "date": "2025-08-01",
 "duration_minutes": 60,
 "notes": "Full body strength session"
 }
+```
 
 Add an Exercise to a Workout
 
 POST /workouts/1/exercises/1/workout_exercises
 Content-Type: application/json
 
+```
 {
 "reps": 10,
 "sets": 4,
 "duration_seconds": 0
 }
+```
 
 ---
 
@@ -120,6 +135,7 @@ You can import the endpoints and JSON payloads into Postman for your own testing
 
 ## Project Structure
 
+```
 server/
 ├── app.py
 ├── models.py
@@ -129,6 +145,7 @@ server/
 ├── app.db
 ├── Pipfile
 ├── Pipfile.lock
+```
 
 ---
 
