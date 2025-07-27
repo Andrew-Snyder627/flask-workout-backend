@@ -6,6 +6,25 @@ This repository contains the backend API for a workout tracking application desi
 
 ---
 
+## Submission Checklist
+
+- [x] **Models:** All models and relationships are defined as required (Exercise, Workout, WorkoutExercise with constraints and validations).
+- [x] **Validations:**
+  - **Table constraints** (`nullable=False`, `unique=True`, foreign keys).
+  - **Model validations** (`@validates` in SQLAlchemy models).
+  - **Schema validations** (Marshmallow `@validates`).
+- [x] **Seed file:** Seeds all tables and demonstrates relationships.
+- [x] **Migrations:** Database is migrated and up to date.
+- [x] **API Endpoints:** All required endpoints are implemented and working (GET, POST, DELETE for each model, and the join route).
+- [x] **Serialization:** Marshmallow schemas serialize and validate data for all endpoints.
+- [x] **Error handling:** Errors return clear 400/404 responses.
+- [x] **README:** Professional, detailed, includes endpoint documentation and usage examples, and mentions Postman testing.
+- [x] **.gitignore:** Only tracks the right files—no DB, cache, or env files in your repo.
+- [x] **Tested:** All endpoints tested with Postman or curl, including bad data for validation.
+- [x] **Everything committed and pushed to GitHub main branch.**
+
+---
+
 ## Features
 
 - Workouts: Create, view, and delete workouts with custom notes and durations.
